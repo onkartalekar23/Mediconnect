@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Scheme Alert System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Settings Controls -->
+        <div class="settings-container">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">🌙</button>
+            <button id="lang-toggle" class="text-btn">English / मराठी</button>
+        </div>
+
+        <header>
+            <h1 data-i18n="appTitle">MediScheme Connect</h1>
+            <p class="subtitle" data-i18n="appSubtitle">AI-Powered Drug Recommendations & Government Scheme Finder</p>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <button class="nav-btn active" data-view="view-recommendation" data-i18n="navDrug">💊 Drug
+                Recommendations</button>
+            <button class="nav-btn" data-view="view-schemes" data-i18n="navScheme">📜 Government Schemes</button>
+        </nav>
+
+        <!-- VIEW 1: DRUG RECOMMENDATIONS -->
+        <div id="view-recommendation" class="view-section animate-in">
+            <div class="main-grid">
+                <div class="left-col">
+                    <section class="glass-card" id="search-section">
+                        <h2 data-i18n="searchTitle">🔍 Symptom & Disease Search</h2>
+                        <p class="subtitle" style="margin-bottom: 1rem;" data-i18n="searchSubtitle">Type to add multiple
+                            symptoms or diseases.</p>
+
+                        <!-- Multi-Select Search Component -->
+                        <div class="search-wrapper">
+                            <div id="selected-tags" class="selected-tags"></div>
+                            <input type="text" id="search-input" placeholder="Type a symptom (e.g., Fever)..."
+                                autocomplete="off" data-i18n-placeholder="searchPlaceholder">
+                            <ul id="suggestions-list" class="suggestions-list hidden"></ul>
+                        </div>
+                    </section>
+
+                    <section class="glass-card hidden" id="diagnosis-section" style="margin-top: 2rem;">
+                        <h2 data-i18n="recommendationTitle">🩺 Recommendations</h2>
+                        <div id="disease-list-container">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: GOVERNMENT SCHEMES -->
+        <div id="view-schemes" class="view-section hidden">
+            <div class="main-grid">
+                <div class="left-col">
+                    <section class="glass-card">
+                        <h2 data-i18n="findSchemesTitle">📜 Find Schemes</h2>
+                        <p class="subtitle" data-i18n="findSchemesSubtitle">Select a specific disease to see relevant
+                            government aid.</p>
+
+                        <!-- Reusing the logic, but structurally separate if needed.
+                             For now, we can link the recommendation result to switch to this view,
+                             OR provide a separate dropdown here. Let's provide a separate dropdown for direct access.
+                        -->
+                        <div class="input-group">
+                            <label for="scheme-disease-select"
+                                style="display:block; margin-bottom: 0.5rem; font-weight: 600;"
+                                data-i18n="selectConditionLabel">Select
+                                Condition:</label>
+                            <select id="scheme-disease-select">
+                                <option value="" data-i18n="selectConditionPlaceholder">-- Select Disease --</option>
+                                <!-- Populated by JS -->
+                            </select>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="right-col">
+                    <section class="glass-card hidden" id="scheme-details-section">
+                        <h2 data-i18n="applicableSchemesTitle">🏛️ Applicable Schemes</h2>
+                        <div id="schemes-container"></div>
+                    </section>
+
+                    <section class="glass-card hidden" id="hospital-section" style="margin-top: 2rem;">
+                        <h2 data-i18n="hospitalsTitle">🏥 Nearby Hospitals</h2>
+                        <div id="hospitals-container"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
